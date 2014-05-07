@@ -11,10 +11,6 @@ function sendClap() {
   console.log("Clap pressed");
   socket.emit('clapping', { my: 'data' });
   socket.volatile.emit('clapping', { my: 'data' });
-  socket.on('news', function (data) {
-    console.log('clap data: ' + data);
-    socket.emit('clapping', { my: 'data' });
-  });
 }
 </script>
 
