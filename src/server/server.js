@@ -1,7 +1,3 @@
-// var app = require('http').createServer(handler)
-//   , io = require('socket.io').listen(app)
-//   , fs = require('fs')
-
 var io = require('socket.io')
   , fs = require('fs')
   , http = require('http');
@@ -35,7 +31,6 @@ function start() {
       });
   });
 
-  // server.listen(80);
 }
 
 exports.start = start;

@@ -11,8 +11,7 @@
 
       function sendClap() {
         console.log("Clap pressed");
-        socket.emit('clapping', { my: 'data', "time": (new Date()).getTime() });
-        // socket.volatile.emit('clapping', { thing: "Some Thing", time: (new Date()).getTime() });
+        socket.emit('clapping', { id: '101', "time": (new Date()).getTime() });
       }
     </script>
   </head>
