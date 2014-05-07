@@ -2,9 +2,9 @@ var io = require('socket.io')
   , fs = require('fs')
   , http = require('http');
 
-function start() {
+function start(rootDir) {
   function handler (req, res) {
-    fs.readFile(__dirname + '/index.html',
+    fs.readFile(rootDir + '/html/index.html',
     function (err, data) {
       if (err) {
         res.writeHead(500);
