@@ -3,7 +3,7 @@ var app = require('http').createServer(handler)
   , fs = require('fs')
 
 console.log("Starting...")
-app.listen(1337);
+app.listen(80);
 console.log("Listening...")
 
 function handler (req, res) {
@@ -22,6 +22,9 @@ function handler (req, res) {
 io.sockets.on('connection', function (socket) {
 	  socket.emit('news', { hello: 'world' });
     socket.on('my other event', function (data) {
-	        console.log(data);
+	        console.log("Other data: " + data);
 		  });
+    socket.on('clapping', function(data) {
+      console.log("Clap Clap: " + data)
+    });
 });

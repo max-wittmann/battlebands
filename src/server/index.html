@@ -3,8 +3,21 @@
 <script>
 var socket = io.connect('http://localhost');
 socket.on('news', function (data) {
-  console.log(data);
+  console.log('news data: ' + data);
   socket.emit('my other event', { my: 'data' });
 });
+
+function sendClap() {
+  console.log("Clap pressed");
+  socket.emit('clapping', { my: 'data' });
+  socket.volatile.emit('clapping', { my: 'data' });
+  socket.on('news', function (data) {
+    console.log('clap data: ' + data);
+    socket.emit('clapping', { my: 'data' });
+  });
+}
 </script>
+
+  <button onClick="sendClap()" type="button">Clap</button>
+
 </html>
