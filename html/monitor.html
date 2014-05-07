@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="main.css"></link>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var server = require('../src/server/server.js');
+      var socket = io.connect('http://localhost');
+      socket.on('clapUpdate', function (data) {
+        console.log('clap update data: ' + data);
+        $('#clapNr').text(server.getClapNr());
+      });
+    </script>
+  </head>
+
+  <body>
+    <p>
+      Clap nr: <span id='clapNr'>0</span>
+    </p>
+  </body>
+
+
+</html>

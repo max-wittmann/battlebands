@@ -2,13 +2,27 @@ var io = require('socket.io')
   , fs = require('fs')
   , http = require('http');
 
+var claps = 0;
+
+var routes = {}
+routes['/'] = 'index.html';
+
 function start(rootDir) {
   function handler (req, res) {
-    fs.readFile(rootDir + '/html/index.html',
+    // console.log(req + ", " + res);
+    console.log(req['url'])
+    // for(var key in req) {
+    //   console.log(key + ", " + req[key]);
+    // }
+    var url = req['url'];
+    if(routes.hasOwnProperty(url))
+      url = routes[url]
+
+    fs.readFile(rootDir + '/html/' + url,
     function (err, data) {
       if (err) {
         res.writeHead(500);
-        return res.end('Error loading index.html');
+        return res.end('Error loading ' + url);
       }
 
       res.writeHead(200);
@@ -28,9 +42,14 @@ function start(rootDir) {
         console.log("Clap Clap: " + JSON.stringify(data) + ", " + data.thing)
         console.log(new Date().getTime() + " : " + data.time)
         console.log("Time taken: " + ((new Date()).getTime() - data.time))
+        claps++;
       });
   });
 
+}
+
+function getNumClaps() {
+  return claps;
 }
 
 exports.start = start;
