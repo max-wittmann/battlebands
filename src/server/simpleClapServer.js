@@ -25,8 +25,6 @@ io.sockets.on('connection', function (socket) {
 	        console.log("Other data: " + data);
 		  });
     socket.on('clapping', function(data) {
-      console.log("Clap Clap: " + JSON.stringify(data) + ", " + data.thing)
-      console.log(new Date().getTime() + " : " + data.time)
-      console.log("Time taken: " + ((new Date()).getTime() - data.time))
+      console.log("Clap Clap: " + data)
     });
 });

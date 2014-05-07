@@ -1,19 +1,24 @@
 <html>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-var socket = io.connect('http://localhost');
-socket.on('news', function (data) {
-  console.log('news data: ' + data);
-  socket.emit('my other event', { my: 'data' });
-});
+  <head>
+    <link rel="stylesheet" type="text/css" href="main.css"></link>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost');
+      socket.on('news', function (data) {
+        console.log('news data: ' + data);
+        socket.emit('my other event', { my: 'data' });
+      });
 
-function sendClap() {
-  console.log("Clap pressed");
-  socket.emit('clapping', { my: 'data' });
-  socket.volatile.emit('clapping', { my: 'data' });
-}
-</script>
+      function sendClap() {
+        console.log("Clap pressed");
+        socket.emit('clapping', { my: 'data', "time": (new Date()).getTime() });
+        // socket.volatile.emit('clapping', { thing: "Some Thing", time: (new Date()).getTime() });
+      }
+    </script>
+  </head>
 
-  <button onClick="sendClap()" type="button">Clap</button>
+  <button style='width: 200px; height: 200px;' onClick="sendClap()" type="button">Clap</button>
+
+  <div></div>
 
 </html>
